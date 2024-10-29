@@ -4,11 +4,11 @@ info:
   description: API for creating, updating, retrieving, and managing voiceagents on Plivo's platform. It includes real-time chat interaction via WebSocket or REST API.
   version: 1.0.0
 servers:
-  - url: https://api.plivo.com/v1/Account/{auth_id}
-    description: Plivo Voice agent API Server
+  - url: https://api.getvocalai.com/v1/
+    description: Ai Voice Agent api server URL
 tags:
   - name: Voiceagent
-    description: API for managing voiceagents
+    description: API for managing Voice Agents
   - name: Functions
     description: CRUD APIs for managing functions
   - name: Knowledgebase
@@ -40,7 +40,7 @@ x-tagGroups:
       - knowledgebase_model
 
 paths:
-  /Voiceagent:
+  /voice_agents:
     post:
       summary: Create a new voiceagent
       description: This endpoint creates a new voice agent with specified parameters, such as name, prompt, knowledgebase, TTS/STT providers, etc.
@@ -103,7 +103,7 @@ paths:
           description: Server error while fetching the list of voiceagents.
 
 
-  /Voiceagent/{voiceagent_id}:
+  /voice_agents/{voiceagent_id}:
     get:
       summary: Retrieve a voice agent by ID
       description: Fetches details of a specific voice agent using its unique ID.
@@ -183,7 +183,7 @@ paths:
 
 
 
-  /Voiceagent/{voiceagent_id}/chat:
+  /voice_agents/{voiceagent_id}/chat:
     post:
       summary: Chat with a voiceagent
       description: Engage in a conversation with a voice agent by sending a message.
@@ -229,7 +229,7 @@ paths:
           description: Server error while communicating with the voiceagent.
 
 
-  /Voiceagent/{voiceagent_id}/talk:
+  /voice_agents/{voiceagent_id}/talk:
     post:
       summary: Talk to a voice agent
       description: This URL to be used as answer URL in your Plivo platform.
@@ -318,7 +318,7 @@ paths:
 
 
 
-  /Function:
+  /functions:
     post:
       summary: Create a function
       description: Create a new function in the system.
@@ -360,7 +360,7 @@ paths:
 
 
 
-  /Function/{function_id}:
+  /functions/{function_id}:
     get:
       summary: Get a function
       description: Retrieve details of a specific function using its ID.
@@ -433,7 +433,7 @@ paths:
 
 
 
-  /Knowledgebase:
+  /knowledgebase:
     post:
       summary: Add a document
       description: Upload a PDF, DOCX, or Markdown document to the knowledgebase.
@@ -479,16 +479,16 @@ paths:
                 documents:
                   - id: "497f6eca-6276-4993-bfeb-53cbbbba6f08"
                     name: "doc1.pdf"
-                    url: "https://storage.plivo.com/doc1.pdf"
+                    url: "https://storage.getvocalai.com/doc1.pdf"
                   - id: "28af6eca-6276-4993-bfeb-53cbbbba6f08"
                     name: "doc2.docx"
-                    url: "https://storage.plivo.com/doc2.docx"
+                    url: "https://storage.getvocalai.com/doc2.docx"
         '500':
           description: Server error while fetching the list of documents.
 
 
 
-  /Knowledgebase/{document_id}:
+  /knowledgebase/{document_id}:
     get:
       summary: Get a document
       description: Retrieve details of a specific knowledgebase document using its ID.
@@ -580,7 +580,7 @@ components:
             provider:
               type: string
               enum:
-                - "openapi"
+                - "openai"
                 - "anthropic"
             model:
               type: string
@@ -727,12 +727,12 @@ components:
           example: "Hi, I am Jack. How can I help you today?"
         websocket_url:
           type: string
-          example: "wss://api.example.com/v1/Account/{auth_id}/Voiceagent/{voiceagent_id}/connect"
+          example: "wss://api.example.com/v1/Account/{auth_id}/voice_agents/{voiceagent_id}/connect"
           description: The URL for WebSocket communication with the voiceagent.
         call_url:
           type: string
           description: URL to be used to answer calls.
-          example: "https://api.plivo.com/v1/Account/{auth_id}/Voiceagent/{voiceagent_id}/talk"
+          example: "https://api.getvocalai.com/v1/Account/{auth_id}/voice_agents/{voiceagent_id}/talk"
 
         prompt:
           type: string
@@ -746,7 +746,7 @@ components:
             provider:
               type: string
               enum:
-                - "openapi"
+                - "openai"
                 - "anthropic"
             model:
               type: string
@@ -901,7 +901,7 @@ components:
             provider:
               type: string
               enum:
-                - "openapi"
+                - "openai"
                 - "anthropic"
             model:
               type: string
@@ -1157,6 +1157,6 @@ components:
           description: The name of the document with its extension.
         url:
           type: string
-          example: "https://storage.plivo.com/Features.pdf"
+          example: "https://storage.getvocalai.com/Features.pdf"
           description: The URL where the document can be accessed.
 
